@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Johnson Electric Experience | Parth Patel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="index.html#about">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="assets/resume.pdf" target="_blank">Resume</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <section class="experience-page">
+        <a class="back-link" href="index.html#resume-timeline">← Back to Portfolio</a>
+
+        <div class="company-heading">
+            <a class="company-link" target="_blank" href="https://www.johnsonelectric.com/en">
+                <img class="company-logo" src="images/Johnson_Electric_logo.png" alt="Johnson Electric logo">
+            </a>
+            <a class="company-link" target="_blank" href="https://www.johnsonelectric.com/en">
+                <h3 id="company-name">Johnson Electric</h3>
+            </a>
+        </div>
+
+        <h2 class="exp-role">Software and Quality Engineer</h2>
+        <p class="exp-meta">
+            <span>May 2025 – August 2026</span>
+            <span>Mississauga, ON</span>
+        </p>
+
+        <!-- HIGHLIGHTS -->
+        <h3 class="section-title">Highlights</h3>
+        <ul class="highlights">
+            <li>Developed manufacturing and quality dashboards using Grafana and SQL Database.</li>
+            <li>Built automated data pipelines using Python, Excel/VBA, and PostgreSQL across multiple floor machines and production lines.</li>
+            <li>Conducted trials and root cause analysis for quality improvement on a daily basis; one notable success was coming to the realization that ceramic curvature and orientation
+                was a major contributor to part warpage, which led to a reduction in overall scrap rates by 2-3% and saved $100,000 annually.
+            </li>
+            <li>Inspected microstructures of materials to ensure quality standards.</li>
+            <li>Simultaneusly learned about a real manufacturing environment and typical quality control processes and dealing with customer issues.</li>
+        </ul>
+
+        <!-- PROJECTS -->
+        <h3 class="section-title">High Level Projects</h3>
+        <div class="project-grid">
+
+            <div class="project-card">
+                <h4>Fuel Cell PPK Project</h4>
+                <p>Dashboards tracking process performance (PPK) across fuel cell production lines.</p>
+                <div class="tags"><span>Grafana</span><span>PostgreSQL</span></div>
+            </div>
+
+            <div class="project-card">
+                <h4>Fuel Cell Scrap Dashboard</h4>
+                <p>Live dashboard showing reject counts, cost breakdown, and scrap rate, displayed on the production floor.</p>
+                <div class="tags"><span>Grafana</span><span>PostgreSQL</span><span>Python</span></div>
+            </div>
+
+            <div class="project-card">
+                <h4>Furnace Data Collection</h4>
+                <p>Installed and set up sensors to monitor sinter and oxidation furnace flow rates.</p>
+                <div class="tags"><span>Sensors</span><span>Python</span><span>Grafana</span></div>
+            </div>
+
+        </div>
+
+        <!-- TECHNOLOGIES -->
+        <h3 class="section-title">Technologies</h3>
+        <div class="tags tags-large">
+            <span>Python</span>
+            <span>PostgreSQL</span>
+            <span>Grafana</span>
+            <span>JMP</span>
+            <span>PowerBI</span>
+            <span>Excel</span>
+            <span>VBA</span>
+        </div>
+
+        <!-- GALLERY -->
+        <h3 class="section-title">Gallery</h3>
+
+        <div class="gallery">
+
+            <figure>
+                <img src="images/fuelcell_ppk_project_others.png" alt="Fuel Cell PPK Project">
+                <figcaption>Fuel Cell PPK Project</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/adminer_database.png" alt="Adminer PostgreSQL Database">
+                <figcaption>Adminer PostgreSQL Database</figcaption>
+            </figure>
+
+            <figure class="scrap-dash">
+                <div class="scrap-dash-images">
+                    <img src="images/fuelcell_scrap_dashboard1.jpeg" alt="Fuel Cell Scrap Dashboard - Top Defect Types">
+                    <img src="images/fuelcell_scrap_dashboard2.jpeg" alt="Fuel Cell Scrap Dashboard - Cost Breakdown">
+                    <img src="images/fuelcell_scrap_dashboard3.jpeg" alt="Fuel Cell Scrap Dashboard">
+                </div>
+                <figcaption>Fuel Cell Scrap Dashboard: Reject Count, Cost Breakdown, and Scrap Rate Overview</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/trial_entry_form.png" alt="Fuel Cell Trial Entry Form Submitter">
+                <figcaption>Fuel Cell Trial Entry Form Interface</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/fuelcell_trial_entry_request_form.jpeg" alt="Fuel Cell Trial Entry Form">
+                <figcaption>Trial Entry Form Interface &amp; Floor View</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/sinter_furnace_cooling_flowrate.jpeg" alt="Sinter Furnace Cooling Flow Rate">
+                <figcaption>Sinter Furnace Cooling Flow Rate Monitoring</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/oxidation_furnace_flow_rates.jpeg" alt="Oxidation Furnace Flow Rates">
+                <figcaption>Oxidation Furnace Flow Rates Monitoring &amp; PPK</figcaption>
+            </figure>
+
+        </div>
+
+        <!-- COMPANY OVERVIEW (moved down, shortened) -->
+        <h3 class="section-title">Company Overview</h3>
+        <p class="overview">
+            Johnson Electric is a global manufacturer of motion subsystems and components for automotive, industrial, and
+            consumer electronics. The Mississauga location focuses on manufacturing SOFC (Solid Oxide Fuel Cell) plates,
+            which are sold to companies that build SOFC stacks for fuel cell applications.
+        </p>
+
+    </section>
+</main>
+
+<!-- Click-to-enlarge viewer -->
+<div id="lightbox" class="lightbox" aria-hidden="true">
+    <img src="" alt="">
+    <p></p>
+</div>
+
+<script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = lightbox.querySelector("img");
+    const lightboxCaption = lightbox.querySelector("p");
+
+    document.querySelectorAll(".gallery img").forEach(function (img) {
+        img.addEventListener("click", function () {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightboxCaption.textContent = img.alt;
+            lightbox.classList.add("open");
+            lightbox.setAttribute("aria-hidden", "false");
+        });
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+    }
+
+    lightbox.addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeLightbox();
+    });
+</script>
+
+</body>
+</html>
