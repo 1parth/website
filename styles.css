@@ -524,6 +524,16 @@ h2{
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.project-thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: top;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+}
+
 .project-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);

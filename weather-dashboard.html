@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard | Parth Patel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="index.html#about">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="assets/resume.pdf" target="_blank">Resume</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <section class="experience-page">
+        <a class="back-link" href="index.html#projects">← Back to Portfolio</a>
+
+        <h2 class="exp-role">Weather Dashboard</h2>
+        <p class="exp-meta">
+            <span>Personal Project</span>
+            <span>Grafana + InfluxDB + Python + OpenMeteo API</span>
+        </p>
+
+        <!-- OVERVIEW -->
+        <h3 class="section-title">Overview</h3>
+        <p class="overview">
+            A weather monitoring dashboard built with Grafana and backed by an InfluxDB time-series database.
+            Weather readings are stored in an InfluxDB bucket and visualized in Grafana, showing current conditions
+            alongside historical rainfall, snowfall, temperature, and wind trends.
+        </p>
+
+        <!-- HIGHLIGHTS -->
+        <h3 class="section-title">Highlights</h3>
+        <ul class="highlights">
+            <li>Stored weather data in an InfluxDB bucket with fields for temperature, apparent temperature, precipitation probability, rainfall, snowfall, wind speed, wind direction, and weather code.</li>
+            <li>Built a Grafana dashboard with a current conditions section: actual and "feels like" temperature, precipitation probability, a weather condition icon, and live wind speed and direction.</li>
+            <li>Created historical panels for daily rainfall and snowfall, along with past temperature and wind trends over a selectable time range.</li>
+            <li>Used dashboard variables and time range controls so the same panels can be reused across different periods and weather codes.</li>
+        </ul>
+
+        <!-- HOW IT WORKS -->
+        <h3 class="section-title">How It Works</h3>
+        <div class="project-grid">
+
+            <div class="project-card">
+                <h4>1. Store</h4>
+                <p>Weather measurements are written to an InfluxDB bucket as time-series fields.</p>
+                <div class="tags"><span>InfluxDB</span><span>Flux</span><span>Python</span><span>Open Meteo API</span></div>
+            </div>
+
+            <div class="project-card">
+                <h4>2. Query</h4>
+                <p>InfluxDB's Data Explorer was used to build and test queries against each field before wiring them into panels.</p>
+                <div class="tags"><span>InfluxDB</span><span>Data Explorer</span></div>
+            </div>
+
+            <div class="project-card">
+                <h4>3. Visualize</h4>
+                <p>Grafana panels display current conditions and historical trends in one dashboard.</p>
+                <div class="tags"><span>Grafana</span></div>
+            </div>
+
+        </div>
+
+        <!-- TECHNOLOGIES -->
+        <h3 class="section-title">Technologies</h3>
+        <div class="tags tags-large">
+            <span>Grafana</span>
+            <span>InfluxDB</span>
+            <span>Python</span>
+            <span>OpenMeteo API</span>
+            <span>Time-Series Data</span>
+        </div>
+
+        <!-- GALLERY -->
+        <h3 class="section-title">Gallery</h3>
+
+        <div class="gallery">
+
+            <figure>
+                <img src="images/weather-dash-current-conditions.png" alt="Weather Dashboard - Current Conditions">
+                <figcaption>Current Conditions: Temperature, Feels Like, Precipitation Probability, and Wind</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/weather-dash-past-temps-and-wind.png" alt="Weather Dashboard - Past Temperatures and Wind">
+                <figcaption>Past Temperatures and Wind</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/weather-dash-precipitation-probability.png" alt="Weather Dashboard - Precipitation Probability">
+                <figcaption>Precipitation Probability</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/weather-dash-rain-and-snow.png" alt="Weather Dashboard - Daily Rainfall and Snowfall">
+                <figcaption>Daily Rainfall and Snowfall</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/weather-dash-influxdb.png" alt="InfluxDB Data Explorer">
+                <figcaption>InfluxDB Data Explorer: Weather Bucket Fields</figcaption>
+            </figure>
+
+        </div>
+
+    </section>
+</main>
+
+<!-- Click-to-enlarge viewer -->
+<div id="lightbox" class="lightbox" aria-hidden="true">
+    <img src="" alt="">
+    <p></p>
+</div>
+
+<script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = lightbox.querySelector("img");
+    const lightboxCaption = lightbox.querySelector("p");
+
+    document.querySelectorAll(".gallery img").forEach(function (img) {
+        img.addEventListener("click", function () {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightboxCaption.textContent = img.alt;
+            lightbox.classList.add("open");
+            lightbox.setAttribute("aria-hidden", "false");
+        });
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+    }
+
+    lightbox.addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeLightbox();
+    });
+</script>
+
+</body>
+</html>
