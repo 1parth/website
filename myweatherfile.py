@@ -9,7 +9,7 @@ from influxdb_client import WritePrecision
 local_tz = pytz.timezone("America/New_York")
 
 # --- InfluxDB config ---
-token = "dFbFGgFlXefKq1yJ8DW2x1At8VVrI_1Sr2brWuUqC_vh2huipS3LxuBQkIBsZHcrxeY9nULKFFEmCOjwzQ6Lyw=="
+token = "hidden"
 org = "ParthOrg"
 bucket = "Weather Bucket"
 url = "http://localhost:8086"
