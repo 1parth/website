@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAC Robomaster | Parth Patel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="index.html#about">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="assets/resume.pdf" target="_blank">Resume</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <section class="experience-page">
+        <a class="back-link" href="index.html#projects">← Back to Portfolio</a>
+
+        <h2 class="exp-role">Gimbal Cannon Design</h2>
+        <p class="exp-meta">
+            <span>Team Project</span>
+            <span>SOLIDWORKS + Autodesk Inventor</span>
+        </p>
+
+        <!-- OVERVIEW -->
+        <h3 class="section-title">Overview</h3>
+        <p class="overview">
+            A gimbal cannon to be used for the upcoming RoboMaster tournament. My role was to redesign the gimbal cannon itself, which is essentially a mechanism that fires projectiles the size of ping-pong balls. Accuracy and range are key here!
+        </p>
+
+        <!-- HIGHLIGHTS -->
+        <h3 class="section-title">Highlights</h3>
+        <ul class="highlights">
+            <li>Designed, prototyped, and tested different components and experimented with multiple configurations.</li>
+            <li>Robot was brought up to 90% firing accuracy within a 20cm radius, and a 50% faster firing speed compared to previous years' model.</li>
+            <li>Worked with 3D-printed parts and gained exposure to SOLIDWORKS and part modelling.</li>
+        </ul>
+
+        <!-- HOW IT WORKS -->
+        <h3 class="section-title">How It Works</h3>
+        <div class="project-grid">
+
+            <div class="project-card">
+                <h4>1. Loading</h4>
+                <p>Small projectile ball comes up the tubing shaft and prepares for launch.</p>
+            </div>
+
+            <div class="project-card">
+                <h4>2. Release</h4>
+                <p>After unlock, ball is released into spinning wheels to be fired.</p>
+            </div>
+
+            <div class="project-card">
+                <h4>3. Fire</h4>
+                <p>Ball reaches target up to specified range.</p>
+            </div>
+
+        </div>
+
+        <!-- TECHNOLOGIES -->
+        <h3 class="section-title">Technologies</h3>
+        <div class="tags tags-large">
+            <span>SOLIDWORKS</span>
+            <span>Autodesk Inventor</span>
+            <span>Prusa-3D Slicer</span>
+        </div>
+
+        <!-- GALLERY -->
+        <h3 class="section-title">Gallery</h3>
+
+        <div class="gallery">
+
+            <figure>
+                <img src="images/robomaster-gimbal-render.png" alt="Gimbal Cannon Render">
+                <figcaption>Gimbal Cannon: SOLIDWORKS Render</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/robomaster-gimbal-render-hd.png" alt="Gimbal Cannon Render (HD)">
+                <figcaption>Gimbal Cannon: High-Resolution Render</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/robomaster-robot.png" alt="RoboMaster Robot">
+                <figcaption>The Full RoboMaster Robot with Gimbal Cannon Mounted</figcaption>
+            </figure>
+
+        </div>
+
+    </section>
+</main>
+
+<!-- Click-to-enlarge viewer -->
+<div id="lightbox" class="lightbox" aria-hidden="true">
+    <img src="" alt="">
+    <p></p>
+</div>
+
+<script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = lightbox.querySelector("img");
+    const lightboxCaption = lightbox.querySelector("p");
+
+    document.querySelectorAll(".gallery img").forEach(function (img) {
+        img.addEventListener("click", function () {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightboxCaption.textContent = img.alt;
+            lightbox.classList.add("open");
+            lightbox.setAttribute("aria-hidden", "false");
+        });
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+    }
+
+    lightbox.addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeLightbox();
+    });
+</script>
+
+</body>
+</html>
