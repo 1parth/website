@@ -23,10 +23,10 @@
     --font-heading: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
     /* ---- page surfaces ---- */
-    --bg: #222222;
-    --surface: #2e2e2e;            /* cards, form, gallery figures */
-    --surface-2: #333333;          /* experience item */
-    --surface-input: #1f1f1f;      /* form fields */
+    --bg: #0b0818;
+    --surface: rgba(255, 255, 255, 0.06);    /* cards, form, gallery figures (glass) */
+    --surface-2: rgba(255, 255, 255, 0.06);  /* experience item */
+    --surface-input: #15111f;                /* form fields (kept opaque) */
     --border-strong: #cccccc;
 
     /* ---- text ---- */
@@ -37,6 +37,15 @@
     /* ---- shadows ---- */
     --shadow: rgba(0, 0, 0, 0.4);
     --shadow-hover: rgba(0, 0, 0, 0.6);
+
+    /* ---- page background gradient (flows down from the hero through <main>) ---- */
+    --page-top: #0b0818;           /* must match the first stop of --page-bg: the hero fades into it */
+    --page-bg:
+        radial-gradient(circle 700px at 90% 5%,  color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%),
+        radial-gradient(circle 800px at 5% 28%,  rgba(90, 60, 200, 0.24), transparent 70%),
+        radial-gradient(circle 750px at 95% 55%, color-mix(in srgb, var(--hero-accent) 18%, transparent), transparent 70%),
+        radial-gradient(circle 800px at 4% 80%,  color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%),
+        linear-gradient(180deg, #0b0818 0%, #140d2b 25%, #1b0f2b 50%, #130f22 75%, #0c0a15 100%);
 
     /* ---- contact side panel (tinted with the accent) ---- */
     --panel-base: #000000;
@@ -81,9 +90,9 @@
     --accent-text: color-mix(in srgb, var(--accent) 75%, black); /* darker so it reads on white */
     --btn-hover-text: var(--accent-deep);
 
-    --bg: #f4f4f6;
-    --surface: #ffffff;
-    --surface-2: #ffffff;
+    --bg: #f3f1fb;
+    --surface: rgba(255, 255, 255, 0.72);
+    --surface-2: rgba(255, 255, 255, 0.72);
     --surface-input: #ffffff;
     --border-strong: #bbbbbb;
 
@@ -93,6 +102,14 @@
 
     --shadow: rgba(0, 0, 0, 0.12);
     --shadow-hover: rgba(0, 0, 0, 0.22);
+
+    --page-top: #ece9fb;
+    --page-bg:
+        radial-gradient(circle 700px at 90% 5%,  color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%),
+        radial-gradient(circle 800px at 5% 28%,  rgba(139, 120, 255, 0.20), transparent 70%),
+        radial-gradient(circle 750px at 95% 55%, rgba(96, 165, 250, 0.20), transparent 70%),
+        radial-gradient(circle 800px at 4% 80%,  color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%),
+        linear-gradient(180deg, #ece9fb 0%, #f4ecfb 30%, #fbeef4 60%, #eef3fd 100%);
 
     --panel-base: #ffffff;
     --panel-end: #f4f4f6;
@@ -173,7 +190,7 @@
     font: inherit;
     font-size: 0.85rem;
     color: var(--text-strong);
-    background: var(--surface);
+    background: var(--surface-input);
     border: 1px solid var(--line-30);
     border-radius: 999px;
     padding: 0.35rem 0.8rem;
@@ -652,7 +669,7 @@ section{
 
 .experience-item {
     padding: 20px;
-    border: 1px solid var(--border-strong);
+    border: 1px solid var(--line-30);
     border-radius: 5px;
     background-color: var(--surface-2);
     margin-bottom: 20px;
@@ -881,7 +898,7 @@ h2{
 ========================= */
 
 footer {
-    margin-top: 80px;
+    margin-top: 0;
     background: var(--sky-bg);
     color: var(--footer-text);
     text-align: center;
@@ -1380,7 +1397,7 @@ nav a:focus-visible {
 
 /* ---------- About ---------- */
 #about {
-    max-width: 1040px;
+    max-width: 960px;
     margin: 0 auto;
     padding-top: 80px;
     padding-bottom: 60px;
@@ -1419,39 +1436,63 @@ nav a:focus-visible {
     color: var(--text-strong);
 }
 
-/* ---------- About: photo + text ---------- */
-.about-layout {
-    display: grid;
-    grid-template-columns: minmax(200px, 280px) 1fr;
-    gap: 3rem;
-    align-items: center;
+/* ---------- About: small photo beside the text (text wraps around it) ---------- */
+#about::after {
+    content: "";
+    display: block;
+    clear: both;
 }
 
 .about-photo {
-    display: block;
-    width: 100%;
+    float: right;
+    width: 220px;
     aspect-ratio: 4 / 5;
     object-fit: cover;
     object-position: center top;
+    margin: 0 0 1.25rem 2.5rem;
     border-radius: 16px;
     border: 1px solid var(--line-15);
-    box-shadow: 10px 10px 0 var(--accent), 0 10px 28px var(--shadow);
+    box-shadow: 8px 8px 0 var(--accent), 0 10px 28px var(--shadow);
 }
 
-.about-text p:last-child {
-    margin-bottom: 0;
-}
-
-/* stack on tablets/phones, photo on top */
-@media (max-width: 800px) {
-    .about-layout {
-        grid-template-columns: 1fr;
-        gap: 2.25rem;
-        justify-items: center;
-    }
-
+@media (max-width: 700px) {
     .about-photo {
-        max-width: 240px;
-        box-shadow: 8px 8px 0 var(--accent), 0 8px 20px var(--shadow);
+        float: none;
+        display: block;
+        width: 200px;
+        margin: 0 auto 2rem;
     }
+}
+
+
+/* =====================================================================
+   BACKGROUND  -  gradient that continues from the hero down the page
+===================================================================== */
+
+/* the gradient itself lives in --page-bg (theme block) */
+main {
+    background: var(--page-bg);
+    padding-bottom: 80px;
+}
+
+/* fade the bottom of the hero into the start of the page gradient */
+#hero-banner::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 24%;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, var(--page-top));
+}
+
+/* frosted-glass cards so the gradient shows through them */
+.project-card,
+.cert-card,
+.contact-form,
+.gallery figure {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
