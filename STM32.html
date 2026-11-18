@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STM32 Microcontroller Showcase | Parth Patel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="index.html#about">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="assets/resume.pdf" target="_blank">Resume</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <section class="experience-page">
+        <a class="back-link" href="index.html#projects">← Back to Portfolio</a>
+
+        <h2 class="exp-role">STM32 Microcontroller Showcase</h2>
+        <p class="exp-meta">
+            <span>Embedded Systems Mini-Projects</span>
+            <span>STM32F429 + C++ + Circuit Building</span>
+        </p>
+
+        <!-- OVERVIEW -->
+        <h3 class="section-title">Overview</h3>
+        <p class="overview">
+            A collection of mini-projects built around an STM32F429 microcontroller, combining hands-on circuit building with embedded C++ programming. The projects cover analog sensing, PWM control, stepper motor driving, and touchscreen and button interfaces, with everything running in real time on the microcontroller.
+        </p>
+
+        <!-- HIGHLIGHTS -->
+        <h3 class="section-title">Highlights</h3>
+        <ul class="highlights">
+            <li>Built a digital thermometer and PWM fan controller using an LM35 sensor, op-amp, MOSFET, and optocoupler.</li>
+            <li>Built a stepper motor controller with an H-bridge driver, supporting full-step and half-step modes with adjustable speed and direction.</li>
+            <li>Programmed all logic in C++ using ADC, PWM, timers, interrupts, and finite state machines.</li>
+            <li>Gained experience in embedded systems, circuit design, and electrical engineering fundamentals.</li>
+        </ul>
+
+        <!-- ============================================ -->
+        <!-- PROJECT 1: THERMOMETER + FAN CONTROLLER      -->
+        <!-- ============================================ -->
+        <h3 class="section-title">Digital Thermometer and PWM Fan Controller</h3>
+        <p class="overview">
+            A digital thermometer that reads temperature, displays it on an LCD alongside an adjustable threshold, and drives a fan based on the temperature. Touch capacitive buttons on the LCD are used to change the temperature threshold.
+        </p>
+
+        <ul class="highlights">
+            <li>Designed the circuit around an STM32F429, LM35 temperature sensor, op-amp, MOSFET, and optocoupler, and built it on a breadboard.</li>
+            <li>Displayed the current temperature and threshold on the LCD, with the fan responding to temperature in real time.</li>
+            <li>Programmed the ADC, PWM, and a finite state machine (FSM) for fan control in C++.</li>
+            <li>Integrated touch capacitive buttons on the LCD for temperature control.</li>
+            <li>Developed experience in real-time temperature monitoring, PWM control, circuit design, ADC programming, and touchscreen interfaces.</li>
+        </ul>
+
+        <div class="project-grid">
+
+            <div class="project-card">
+                <h4>1. Sense</h4>
+                <p>The LM35 outputs a voltage proportional to temperature, which is conditioned by an op-amp before reaching the microcontroller.</p>
+                <div class="tags"><span>LM35</span><span>Op-Amp</span></div>
+            </div>
+
+            <div class="project-card">
+                <h4>2. Process</h4>
+                <p>The STM32 reads the signal through its ADC, compares it to the threshold, and runs an FSM to decide the fan state. The LCD shows the temperature and threshold.</p>
+                <div class="tags"><span>ADC</span><span>FSM</span><span>C++</span></div>
+            </div>
+
+            <div class="project-card">
+                <h4>3. Control</h4>
+                <p>A PWM signal is sent through an optocoupler to a MOSFET, which drives the fan at the required speed.</p>
+                <div class="tags"><span>PWM</span><span>MOSFET</span><span>Optocoupler</span></div>
+            </div>
+
+        </div>
+
+        <div class="gallery">
+
+            <figure>
+                <img src="images/STM32-tempsensor.JPEG" alt="Temperature Threshold Circuit Build">
+                <figcaption>Temperature Threshold Circuit Build</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/STM32-OpAmp.png" alt="Op-Amp Schematic">
+                <figcaption>Op-Amp Schematic</figcaption>
+            </figure>
+
+            <figure>
+                <video controls preload="metadata" playsinline>
+                    <source src="videos/STM32-tempsensor.mp4" type="video/mp4">
+                    Your browser does not support video playback.
+                </video>
+                <figcaption>Temperature Sensor Build in Action</figcaption>
+            </figure>
+
+        </div>
+
+        <!-- ============================================ -->
+        <!-- PROJECT 2: STEPPER MOTOR                     -->
+        <!-- ============================================ -->
+        <h3 class="section-title">Stepper Motor with H-Bridge Driver</h3>
+        <p class="overview">
+            A stepper motor controller that runs a bipolar stepper motor in full-step or half-step mode, with adjustable speed and direction set by push buttons. The motor's current status is shown on the LCD.
+        </p>
+
+        <ul class="highlights">
+            <li>Designed the controller around an STM32F429, SN754410NE H-bridge, push buttons, and an external power supply, interfaced with a bipolar stepper motor.</li>
+            <li>Implemented full-step and half-step modes with adjustable speed and direction, and displayed the motor status on the LCD.</li>
+            <li>Programmed the motor control in C++ using timers and interrupts for step modes and speed, with buttons for adjustment.</li>
+            <li>Built the foundation of a multi-function motor controller for use in smaller systems like fans or car wheels.</li>
+            <li>Developed skills in embedded systems, stepper motor control, and implementing speed, direction, and mode changes with interrupts.</li>
+        </ul>
+
+        <div class="project-grid">
+
+            <div class="project-card">
+                <h4>1. Input</h4>
+                <p>Push buttons select the step mode, direction, and speed, and each press is handled through interrupts.</p>
+                <div class="tags"><span>Push Buttons</span><span>Interrupts</span></div>
+            </div>
+
+            <div class="project-card">
+                <h4>2. Step</h4>
+                <p>Timers set the pace of the step sequence, in either full-step or half-step mode, and the LCD shows the current mode and direction.</p>
+                <div class="tags"><span>Timers</span><span>C++</span></div>
+            </div>
+
+            <div class="project-card">
+                <h4>3. Drive</h4>
+                <p>The SN754410NE H-bridge, powered from an external supply, energizes the coils of the bipolar stepper motor.</p>
+                <div class="tags"><span>H-Bridge</span><span>SN754410NE</span></div>
+            </div>
+
+        </div>
+
+        <div class="gallery">
+
+            <figure>
+                <img src="images/STM32-stepper-motor.jpeg" alt="Stepper Motor Build">
+                <figcaption>Stepper Motor Circuit Build</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/STM32-MotorSchematic.png" alt="Motor Circuit Schematic">
+                <figcaption>Motor Circuit Connection Diagram</figcaption>
+            </figure>
+
+            <figure>
+                <video controls preload="metadata" playsinline>
+                    <source src="videos/STM32-steppermotor.mp4" type="video/mp4">
+                    Your browser does not support video playback.
+                </video>
+                <figcaption>Stepper Motor in Action</figcaption>
+            </figure>
+
+        </div>
+
+        <!-- ============================================ -->
+        <!-- OTHER BUILDS                                 -->
+        <!-- ============================================ -->
+        <h3 class="section-title">Other Demos</h3>
+        <p class="overview">
+            A couple of smaller demos built on the same board.
+        </p>
+
+        <div class="gallery">
+
+            <figure>
+                <video controls preload="metadata" playsinline>
+                    <source src="videos/STM32-pokemon.mp4" type="video/mp4">
+                    Your browser does not support video playback.
+                </video>
+                <figcaption>Pokémon Theme Played Through a Speaker</figcaption>
+            </figure>
+
+            <figure>
+                <video controls preload="metadata" playsinline>
+                    <source src="videos/STM32-reactionTime.mp4" type="video/mp4">
+                    Your browser does not support video playback.
+                </video>
+                <figcaption>Reaction Time Game</figcaption>
+            </figure>
+
+        </div>
+
+        <!-- TECHNOLOGIES -->
+        <h3 class="section-title">Technologies</h3>
+        <div class="tags tags-large">
+            <span>STM32F429</span>
+            <span>C++</span>
+            <span>ADC</span>
+            <span>PWM</span>
+            <span>Timers &amp; Interrupts</span>
+            <span>Finite State Machines</span>
+            <span>Circuit Building</span>
+        </div>
+
+    </section>
+</main>
+
+<!-- Click-to-enlarge viewer -->
+<div id="lightbox" class="lightbox" aria-hidden="true">
+    <img src="" alt="">
+    <p></p>
+</div>
+
+<script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = lightbox.querySelector("img");
+    const lightboxCaption = lightbox.querySelector("p");
+
+    document.querySelectorAll(".gallery img").forEach(function (img) {
+        img.addEventListener("click", function () {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightboxCaption.textContent = img.alt;
+            lightbox.classList.add("open");
+            lightbox.setAttribute("aria-hidden", "false");
+        });
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+    }
+
+    lightbox.addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeLightbox();
+    });
+</script>
+
+</body>
+</html>
