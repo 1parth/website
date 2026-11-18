@@ -22,6 +22,8 @@
     margin-top: 1.5rem;
 }
 
+.gallery video { width: 100%; border-radius: 8px; }
+
 /* Left info panel */
 .contact-side {
     padding: 2rem;
@@ -510,8 +512,14 @@ h2{
 /* Project cards */
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
+}
+
+@media (max-width: 600px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .project-card {

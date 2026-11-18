@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunar Pallet Off-Loader | Parth Patel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="index.html#about">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="assets/resume.pdf" target="_blank">Resume</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <section class="experience-page">
+        <a class="back-link" href="index.html#projects">← Back to Portfolio</a>
+
+        <h2 class="exp-role">Lunar Pallet Off-Loader (Work in Progress)</h2>
+        <p class="exp-meta">
+            <span>Capstone Project (MECHTRON 4TB6)</span>
+            <span>In collaboration with MDA Space</span>
+        </p>
+
+        <!-- OVERVIEW -->
+        <h3 class="section-title">Overview</h3>
+        <p class="overview">
+            A lunar pallet off-loader designed to carry and deploy cargo and payloads across the surface of the Moon. Our team of five is designing a system that raises a pallet for rover pickup, levels it on the rover deck, and lowers it back down at the drop-off site. This project is still in progress, and this page covers the proof of concept completed so far.
+        </p>
+
+        <!-- HIGHLIGHTS -->
+        <h3 class="section-title">Highlights</h3>
+        <ul class="highlights">
+            <li>Designed the proof-of-concept leg in SOLIDWORKS as a lead screw driven by a stepper motor, using McMaster-Carr parts.</li>
+            <li>Built and tested a working leg at roughly 1/3 scale, with 3D-printed motor mount, carriage, and end plates.</li>
+            <li>Chose electric actuation over pneumatic and hydraulic options, in part because of the trade-offs of sealing against lunar regolith.</li>
+            <li>Mapped the full off-loading operation into six stages, with system boundaries and monitored and controlled variables for each.</li>
+        </ul>
+
+        <!-- PROOF OF CONCEPT -->
+        <h3 class="section-title">Proof of Concept</h3>
+        <p class="overview">
+            The goal of the proof of concept was to show that a single electrically actuated leg could extend and retract reliably. The leg uses a 28BYJ-48 stepper motor controlled by an Arduino Nano, turning a threaded rod that drives a carriage up and down. In testing, the printed plates did not flex, the leg stowed at a manageable length, and the motor held the load. A tilt sensor is the next piece, since the leveling angle will depend on it.
+        </p>
+
+        <!-- PLANNED OPERATION -->
+        <h3 class="section-title">Planned Operation</h3>
+        <div class="project-grid">
+
+            <div class="project-card">
+                <h4>1. Raise</h4>
+                <p>Disengage the mechanical lock and raise the pallet to maximum height.</p>
+            </div>
+
+            <div class="project-card">
+                <h4>2. Pickup</h4>
+                <p>Wait for the rover to drive underneath, then lower and level the pallet onto the rover deck.</p>
+            </div>
+
+            <div class="project-card">
+                <h4>3. Load</h4>
+                <p>Secure the pallet on the rover for transport.</p>
+            </div>
+
+            <div class="project-card">
+                <h4>4. Traverse</h4>
+                <p>The rover carries the pallet to the drop-off location.</p>
+            </div>
+
+            <div class="project-card">
+                <h4>5. Offload</h4>
+                <p>The off-loader lifts the pallet clear of the rover deck.</p>
+            </div>
+
+            <div class="project-card">
+                <h4>6. Lower</h4>
+                <p>Lower and level the pallet to the Moon's surface.</p>
+            </div>
+
+        </div>
+
+        <!-- TECHNOLOGIES -->
+        <h3 class="section-title">Technologies</h3>
+        <div class="tags tags-large">
+            <span>SOLIDWORKS</span>
+            <span>Arduino</span>
+            <span>C++</span>
+            <span>3D Printing</span>
+        </div>
+
+        <!-- WHAT'S NEXT -->
+        <h3 class="section-title">What's Next</h3>
+        <ul class="highlights">
+            <li>Integrate a tilt sensor for leveling, along with a computer interface and dashboard for leg position.</li>
+            <li>Finalize Revisions 0 and Revision 1, account for lunar hazards in design.</li>
+            <li>Scale the single-leg proof of concept toward the full four-leg system, and build full scale! Estimated completion, April 2027.</li>
+        </ul>
+
+        <!-- GALLERY -->
+        <h3 class="section-title">Gallery</h3>
+
+        <div class="gallery">
+
+            <figure>
+                <img src="images/legPOC.png" alt="Proof of Concept Leg">
+                <figcaption>Proof-of-Concept Leg: SOLIDWORKS Design</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/legPOC_exploded.png" alt="Proof of Concept Leg Exploded View">
+                <figcaption>Exploded View: Lead Screw, Carriage, and Motor Mount</figcaption>
+            </figure>
+
+            <figure>
+                <video controls preload="metadata" playsinline>
+                    <source src="videos/legPOC_built.mp4" type="video/mp4">
+                    Your browser does not support video playback.
+                </video>
+                <figcaption>The Built Proof-of-Concept Leg</figcaption>
+            </figure>
+
+            <figure>
+                <video controls preload="metadata" playsinline>
+                    <source src="videos/LegPOC.mp4" type="video/mp4">
+                    Your browser does not support video playback.
+                </video>
+                <figcaption>Proof-of-Concept Leg in Motion</figcaption>
+            </figure>
+
+        </div>
+
+    </section>
+</main>
+
+<!-- Click-to-enlarge viewer -->
+<div id="lightbox" class="lightbox" aria-hidden="true">
+    <img src="" alt="">
+    <p></p>
+</div>
+
+<script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = lightbox.querySelector("img");
+    const lightboxCaption = lightbox.querySelector("p");
+
+    document.querySelectorAll(".gallery img").forEach(function (img) {
+        img.addEventListener("click", function () {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightboxCaption.textContent = img.alt;
+            lightbox.classList.add("open");
+            lightbox.setAttribute("aria-hidden", "false");
+        });
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+    }
+
+    lightbox.addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeLightbox();
+    });
+</script>
+
+</body>
+</html>
