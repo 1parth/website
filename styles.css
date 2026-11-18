@@ -11,9 +11,10 @@
     color-scheme: dark;
 
     /* ---- accent (buttons, borders, highlights) ---- */
-    --accent: #e63946;
-    --accent-dark: #b5202c;        /* gradient end on the submit button */
-    --accent-deep: #4f0505;        /* header + "view experience" button */
+    --accent: #a855f7;
+    --accent-dark: #7e22ce;        /* gradient end on the submit button */
+    --accent-deep: #3b0764;        /* header + "view experience" button */
+    --accent-hot: #d946ef;         /* second accent: timeline highlights */
     --accent-text: var(--accent);  /* accent used as text colour */
     --on-accent: #ffffff;          /* text that sits on accent / deep backgrounds */
     --btn-hover-text: #ffffff;
@@ -61,15 +62,15 @@
 
     /* ---- hero banner (space scene; kept dark in every theme) ---- */
     --hero-text: #ffffff;
-    --hero-accent: #315cff;
+    --hero-accent: #8b5cf6;
     --hero-glow: color-mix(in srgb, var(--hero-accent) 50%, transparent);
-    --hero-bg: radial-gradient(ellipse at 50% 110%, #1a1033 0%, #0c0c16 55%, #05050a 100%);
+    --hero-bg: radial-gradient(ellipse at 50% 110%, #2a1458 0%, #120b25 55%, #07040f 100%);
     --hero-nebula:
-        radial-gradient(circle at 25% 35%, rgba(90, 60, 200, 0.25), transparent 45%),
-        radial-gradient(circle at 75% 60%, rgba(160, 30, 50, 0.22), transparent 50%),
-        radial-gradient(circle at 55% 20%, rgba(40, 90, 200, 0.18), transparent 40%);
+        radial-gradient(circle at 25% 35%, rgba(139, 92, 246, 0.30), transparent 45%),
+        radial-gradient(circle at 75% 60%, rgba(217, 70, 239, 0.20), transparent 50%),
+        radial-gradient(circle at 55% 20%, rgba(99, 102, 241, 0.20), transparent 40%);
     --hero-moon: radial-gradient(circle at 50% 0%, #3b3b48 0%, #1b1b24 35%, #08080d 70%);
-    --hero-moon-glow: rgba(130, 140, 255, 0.25);
+    --hero-moon-glow: rgba(167, 139, 250, 0.30);
     --hero-shade: rgba(5, 5, 10, 0.55);
 
     /* ---- skyline buildings ---- */
@@ -124,22 +125,32 @@
 }
 
 /* ---------------- ACCENT PRESETS ---------------- */
+:root[data-accent="red"] {
+    --accent: #e63946;
+    --accent-dark: #b5202c;
+    --accent-deep: #4f0505;
+    --accent-hot: #ff4a5a;
+}
+
 :root[data-accent="blue"] {
     --accent: #3b82f6;
     --accent-dark: #1d4ed8;
     --accent-deep: #0b2a5b;
+    --accent-hot: #60a5fa;
 }
 
 :root[data-accent="green"] {
     --accent: #22c55e;
     --accent-dark: #15803d;
     --accent-deep: #064e2b;
+    --accent-hot: #4ade80;
 }
 
 :root[data-accent="purple"] {
     --accent: #a855f7;
     --accent-dark: #7e22ce;
     --accent-deep: #3b0764;
+    --accent-hot: #d946ef;
 }
 
 /* ---------------- DERIVED TOKENS (no need to edit) ---------------- */
@@ -1522,8 +1533,8 @@ main {
 
 /* ---------- CAREER TIMELINE ---------- */
 .timeline-section {
-    --tl-accent: #5b5bff;
-    --tl-accent-2: #ff4a5a;
+    --tl-accent: var(--accent);
+    --tl-accent-2: var(--accent-hot);
     padding: 80px 24px;
     color: var(--text-strong);
 }
@@ -1575,7 +1586,7 @@ main {
     transform: translate(-50%, -50%);
     border-radius: 50%;
     background: radial-gradient(circle, #fff 0%, var(--tl-accent) 45%, transparent 70%);
-    box-shadow: 0 0 18px 6px rgba(91, 91, 255, 0.7);
+    box-shadow: 0 0 18px 6px color-mix(in srgb, var(--tl-accent) 70%, transparent);
     animation: spark-pulse 1.6s ease-in-out infinite;
     z-index: 3;
 }
@@ -1629,8 +1640,8 @@ main {
     text-align: left;
 }
 .timeline-item.key .timeline-card {
-    border-color: rgba(255, 74, 90, 0.5);
-    background: rgba(255, 74, 90, 0.06);
+    border-color: color-mix(in srgb, var(--tl-accent-2) 50%, transparent);
+    background: color-mix(in srgb, var(--tl-accent-2) 7%, transparent);
 }
 .timeline-item.future .timeline-card {
     border-style: dashed;
@@ -1681,8 +1692,8 @@ main {
     padding: 4px 10px;
     border-radius: 6px;
     font-size: 0.85rem;
-    background: rgba(91, 91, 255, 0.15);
-    border: 1px solid rgba(91, 91, 255, 0.35);
+    background: var(--accent-tint);
+    border: 1px solid var(--accent-border-soft);
 }
 .timeline-stats b { color: var(--text-strong); }
 

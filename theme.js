@@ -3,17 +3,18 @@
     var root = document.documentElement;
     var THEME_KEY = 'site-theme';
     var ACCENT_KEY = 'site-accent';
+    var DEFAULT_THEME = 'dark';
+    var DEFAULT_ACCENT = 'purple';   // matches the :root defaults in styles.css (no attribute needed)
 
     function read(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
     function write(key, value) { try { localStorage.setItem(key, value); } catch (e) {} }
 
-    // 1. Apply saved choice, otherwise follow the visitor's OS setting
-    var theme = read(THEME_KEY) ||
-        (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    // 1. Apply saved choice, otherwise use the default (dark + purple for everyone)
+    var theme = read(THEME_KEY) || DEFAULT_THEME;
     root.setAttribute('data-theme', theme);
 
     var accent = read(ACCENT_KEY);
-    if (accent && accent !== 'red') root.setAttribute('data-accent', accent);
+    if (accent && accent !== DEFAULT_ACCENT) root.setAttribute('data-accent', accent);
 
     // 2. Wire up the controls once the page has loaded
     document.addEventListener('DOMContentLoaded', function () {
@@ -38,9 +39,9 @@
         }
 
         if (picker) {
-            picker.value = root.getAttribute('data-accent') || 'red';
+            picker.value = root.getAttribute('data-accent') || DEFAULT_ACCENT;
             picker.addEventListener('change', function () {
-                if (picker.value === 'red') root.removeAttribute('data-accent');
+                if (picker.value === DEFAULT_ACCENT) root.removeAttribute('data-accent');
                 else root.setAttribute('data-accent', picker.value);
                 write(ACCENT_KEY, picker.value);
             });
