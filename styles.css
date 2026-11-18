@@ -1,4 +1,196 @@
+/* =====================================================================
+   THEME  -  everything colour-related is controlled from this block.
+   - :root                       -> default (dark) theme + accent (red)
+   - :root[data-theme="light"]   -> light theme overrides
+   - :root[data-accent="..."]    -> accent colour presets (blue, green, purple)
+   Add a new accent or theme by copying one of the blocks below.
+   The attributes go on the <html> element (theme.js does this for you).
+===================================================================== */
 
+:root {
+    color-scheme: dark;
+
+    /* ---- accent (buttons, borders, highlights) ---- */
+    --accent: #e63946;
+    --accent-dark: #b5202c;        /* gradient end on the submit button */
+    --accent-deep: #4f0505;        /* header + "view experience" button */
+    --accent-text: var(--accent);  /* accent used as text colour */
+    --on-accent: #ffffff;          /* text that sits on accent / deep backgrounds */
+    --btn-hover-text: #ffffff;
+
+    /* ---- fonts (add the Google Fonts <link> from the notes for Inter + Space Grotesk) ---- */
+    --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --font-heading: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+    /* ---- page surfaces ---- */
+    --bg: #222222;
+    --surface: #2e2e2e;            /* cards, form, gallery figures */
+    --surface-2: #333333;          /* experience item */
+    --surface-input: #1f1f1f;      /* form fields */
+    --border-strong: #cccccc;
+
+    /* ---- text ---- */
+    --text-strong: #ffffff;
+    --text-muted: #cccccc;
+    --text-faint: #aaaaaa;
+
+    /* ---- shadows ---- */
+    --shadow: rgba(0, 0, 0, 0.4);
+    --shadow-hover: rgba(0, 0, 0, 0.6);
+
+    /* ---- contact side panel (tinted with the accent) ---- */
+    --panel-base: #000000;
+    --panel-end: #1f1f1f;
+    --panel-tint-1: 27%;
+    --panel-tint-2: 18%;
+
+    /* ---- footer / skyline sky ---- */
+    --sky-sun: #cccccc;
+    --sky-mid: #444455;
+    --sky-far: #222233;
+    --footer-text: #ffffff;
+
+    /* ---- hero banner (space scene; kept dark in every theme) ---- */
+    --hero-text: #ffffff;
+    --hero-accent: #315cff;
+    --hero-glow: color-mix(in srgb, var(--hero-accent) 50%, transparent);
+    --hero-bg: radial-gradient(ellipse at 50% 110%, #1a1033 0%, #0c0c16 55%, #05050a 100%);
+    --hero-nebula:
+        radial-gradient(circle at 25% 35%, rgba(90, 60, 200, 0.25), transparent 45%),
+        radial-gradient(circle at 75% 60%, rgba(160, 30, 50, 0.22), transparent 50%),
+        radial-gradient(circle at 55% 20%, rgba(40, 90, 200, 0.18), transparent 40%);
+    --hero-moon: radial-gradient(circle at 50% 0%, #3b3b48 0%, #1b1b24 35%, #08080d 70%);
+    --hero-moon-glow: rgba(130, 140, 255, 0.25);
+    --hero-shade: rgba(5, 5, 10, 0.55);
+
+    /* ---- skyline buildings ---- */
+    --building-color1: #aa80ff;
+    --building-color2: #66cc99;
+    --building-color3: #cc6699;
+    --building-color4: #538cc6;
+    --window-color1: #bb99ff;
+    --window-color2: #8cd9b3;
+    --window-color3: #d98cb3;
+    --window-color4: #8cb3d9;
+}
+
+/* ---------------- LIGHT THEME ---------------- */
+:root[data-theme="light"] {
+    color-scheme: light;
+
+    --accent-text: color-mix(in srgb, var(--accent) 75%, black); /* darker so it reads on white */
+    --btn-hover-text: var(--accent-deep);
+
+    --bg: #f4f4f6;
+    --surface: #ffffff;
+    --surface-2: #ffffff;
+    --surface-input: #ffffff;
+    --border-strong: #bbbbbb;
+
+    --text-strong: #16161a;
+    --text-muted: #555555;
+    --text-faint: #777777;
+
+    --shadow: rgba(0, 0, 0, 0.12);
+    --shadow-hover: rgba(0, 0, 0, 0.22);
+
+    --panel-base: #ffffff;
+    --panel-end: #f4f4f6;
+    --panel-tint-1: 16%;
+    --panel-tint-2: 9%;
+
+    /* daytime sky: sun instead of moon */
+    --sky-sun: #ffe08a;
+    --sky-mid: #8ec5ee;
+    --sky-far: #d6ecfa;
+    --footer-text: #14263a;
+}
+
+/* ---------------- ACCENT PRESETS ---------------- */
+:root[data-accent="blue"] {
+    --accent: #3b82f6;
+    --accent-dark: #1d4ed8;
+    --accent-deep: #0b2a5b;
+}
+
+:root[data-accent="green"] {
+    --accent: #22c55e;
+    --accent-dark: #15803d;
+    --accent-deep: #064e2b;
+}
+
+:root[data-accent="purple"] {
+    --accent: #a855f7;
+    --accent-dark: #7e22ce;
+    --accent-deep: #3b0764;
+}
+
+/* ---------------- DERIVED TOKENS (no need to edit) ---------------- */
+:root {
+    --accent-glow: color-mix(in srgb, var(--accent) 30%, transparent);
+    --accent-tint: color-mix(in srgb, var(--accent) 15%, transparent);
+    --accent-border: color-mix(in srgb, var(--accent) 50%, transparent);
+    --accent-border-soft: color-mix(in srgb, var(--accent) 35%, transparent);
+
+    --panel-bg: linear-gradient(
+        160deg,
+        color-mix(in srgb, var(--accent) var(--panel-tint-1), var(--panel-base)) 0%,
+        color-mix(in srgb, var(--accent) var(--panel-tint-2), var(--panel-base)) 60%,
+        var(--panel-end) 100%
+    );
+
+    --sky-bg: radial-gradient(
+        closest-corner circle at 0% 0%,
+        var(--sky-sun),
+        var(--sky-sun) 20%,
+        var(--sky-mid) 21%,
+        var(--sky-far) 100%
+    );
+
+    --text-85: color-mix(in srgb, var(--text-strong) 85%, transparent);
+    --text-80: color-mix(in srgb, var(--text-strong) 80%, transparent);
+    --text-70: color-mix(in srgb, var(--text-strong) 70%, transparent);
+    --text-65: color-mix(in srgb, var(--text-strong) 65%, transparent);
+    --text-35: color-mix(in srgb, var(--text-strong) 35%, transparent);
+    --line-10: color-mix(in srgb, var(--text-strong) 10%, transparent);
+    --line-15: color-mix(in srgb, var(--text-strong) 15%, transparent);
+    --line-30: color-mix(in srgb, var(--text-strong) 30%, transparent);
+}
+
+/* ---------------- THEME SWITCHER UI ---------------- */
+.theme-controls {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 900;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.theme-controls button,
+.theme-controls select {
+    font: inherit;
+    font-size: 0.85rem;
+    color: var(--text-strong);
+    background: var(--surface);
+    border: 1px solid var(--line-30);
+    border-radius: 999px;
+    padding: 0.35rem 0.8rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.theme-controls button:hover,
+.theme-controls select:hover {
+    border-color: var(--accent);
+}
+
+.theme-controls button:focus-visible,
+.theme-controls select:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
 
 *{
     margin:0;
@@ -6,12 +198,6 @@
     box-sizing:border-box;
 }
 
-
-:root {
-    --red: #e63946;
-    --red-dark: #b5202c;
-    --red-glow: rgba(230, 57, 70, 0.3);
-}
 
 .contact-layout {
     display: grid;
@@ -27,21 +213,21 @@
 /* Left info panel */
 .contact-side {
     padding: 2rem;
-    background: linear-gradient(160deg, #3a1015 0%, #2a0d11 60%, #1f1f1f 100%);
-    border: 1px solid rgba(230, 57, 70, 0.35);
+    background: var(--panel-bg);
+    border: 1px solid var(--accent-border-soft);
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 8px var(--shadow);
 }
 
 .contact-side h3 {
     margin: 0 0 0.75rem;
     font-size: 1.8rem;
-    color: #fff;
+    color: var(--text-strong);
 }
 
 .contact-intro {
     margin-bottom: 1.75rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-80);
     line-height: 1.6;
 }
 
@@ -56,37 +242,37 @@
     flex-direction: column;
     gap: 0.15rem;
     padding: 0.85rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.85);
+    border-top: 1px solid var(--line-10);
+    color: var(--text-85);
 }
 
 .contact-links span {
     font-size: 0.75rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--red);
+    color: var(--accent-text);
     font-weight: 700;
 }
 
 .contact-links a {
-    color: #fff;
+    color: var(--text-strong);
     text-decoration: none;
     word-break: break-all;
     transition: color 0.2s ease;
 }
 
 .contact-links a:hover {
-    color: var(--red);
+    color: var(--accent-text);
 }
 
 /* Form */
 .contact-form {
     padding: 2rem;
-    background: #2e2e2e;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-top: 4px solid var(--red);
+    background: var(--surface);
+    border: 1px solid var(--line-10);
+    border-top: 4px solid var(--accent);
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 8px var(--shadow);
 }
 
 .form-row {
@@ -107,7 +293,7 @@
 .form-field label {
     margin-bottom: 0.35rem;
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-70);
 }
 
 .form-field input,
@@ -115,24 +301,24 @@
 .form-field textarea {
     padding: 0.8rem 0.9rem;
     font: inherit;
-    color: #fff;
-    background: #1f1f1f;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-strong);
+    background: var(--surface-input);
+    border: 1px solid var(--line-15);
     border-radius: 8px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-field input::placeholder,
 .form-field textarea::placeholder {
-    color: rgba(255, 255, 255, 0.35);
+    color: var(--text-35);
 }
 
 .form-field input:focus,
 .form-field select:focus,
 .form-field textarea:focus {
     outline: none;
-    border-color: var(--red);
-    box-shadow: 0 0 0 3px var(--red-glow);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
 .form-field textarea {
@@ -147,8 +333,8 @@
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #fff;
-    background: linear-gradient(90deg, var(--red-dark), var(--red));
+    color: var(--on-accent);
+    background: linear-gradient(90deg, var(--accent-dark), var(--accent));
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -157,7 +343,7 @@
 
 .contact-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px var(--red-glow);
+    box-shadow: 0 6px 16px var(--accent-glow);
 }
 
 /* Stack on tablets/phones */
@@ -176,74 +362,94 @@
 /* ==============================
    HERO BANNER
 ================================ */
-
+/* ---------- HERO ---------- */
 #hero-banner {
     position: relative;
-    width: 100%;
-    height: 550px;
-
-    background-image:
-        linear-gradient(
-            rgba(0, 0, 15, 0.35),
-            rgba(0, 0, 15, 0.55)
-        ),
-        url("background.jpg");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    min-height: 60vh;
+    display: grid;
+    place-items: center;
     overflow: hidden;
+    color: var(--hero-text);
+    background: var(--hero-bg);
 }
 
-/* Dark overlay */
+/* soft drifting color clouds */
+.hero-nebula {
+    position: absolute;
+    inset: -20%;
+    background: var(--hero-nebula);
+    filter: blur(30px);
+    animation: nebula-drift 45s ease-in-out infinite alternate;
+}
 
+@keyframes nebula-drift {
+    from { transform: translate(-3%, -2%) scale(1); }
+    to   { transform: translate(3%, 2%) scale(1.1); }
+}
+
+#starfield {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* big curved moon surface along the bottom edge */
+.hero-moon {
+    position: absolute;
+    left: 50%;
+    top: 90%;
+    width: 160vw;
+    height: 160vw;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: var(--hero-moon);
+    box-shadow: 0 -4px 70px 8px var(--hero-moon-glow);
+}
+
+/* darkens the center a bit so the text stays readable */
 .hero-overlay {
     position: absolute;
     inset: 0;
-
-    background: linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 0.45),
-        rgba(25, 7, 5, 0.15),
-        rgba(0, 0, 0, 0.45)
-    );
+    background: radial-gradient(ellipse at center, var(--hero-shade) 0%, transparent 70%);
+    pointer-events: none;
 }
-
-/* Banner content */
 
 .hero-content {
     position: relative;
     z-index: 2;
-
-    color: white;
-    padding: 20px;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 24px;
 }
 
-.hero-content h1 {
-    font-size: 58px;
-    font-weight: 700;
-    margin-bottom: 15px;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+/* staggered fade-in */
+.hero-content > * {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fade-up 0.9s ease forwards;
+}
+.hero-content h1 { animation-delay: 0.2s; }
+.hero-content h2 { animation-delay: 0.5s; }
+.hero-content p  { animation-delay: 0.8s; }
+.hero-content .hero-button { animation-delay: 1.1s; }
 
-    letter-spacing: 2px;
+@keyframes fade-up {
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.hero-content h2 {
-    font-size: 25px;
-    font-weight: 400;
-    margin-bottom: 15px;
+.hero-button {
+    display: inline-block;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.hero-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 22px var(--hero-glow);
 }
 
-.hero-content p {
-    font-size: 16px;
-    color: #c5c5d5;
-    letter-spacing: 1px;
-    margin-bottom: 35px;
+@media (prefers-reduced-motion: reduce) {
+    .hero-nebula { animation: none; }
+    .hero-content > * { animation: none; opacity: 1; transform: none; }
 }
 
 /* Explore button */
@@ -253,10 +459,10 @@
 
     padding: 13px 28px;
 
-    border: 1px solid #315cff;
+    border: 1px solid var(--hero-accent);
     border-radius: 5px;
 
-    color: white;
+    color: var(--hero-text);
     text-decoration: none;
 
     font-size: 15px;
@@ -264,8 +470,8 @@
 }
 
 .hero-button:hover {
-    background-color: #315cff;
-    box-shadow: 0 0 20px rgba(49, 92, 255, 0.5);
+    background-color: var(--hero-accent);
+    box-shadow: 0 0 20px var(--hero-glow);
 }
 
 /* Responsive */
@@ -291,14 +497,15 @@
 }
 
 body{
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:var(--font-body);
     line-height:1.6;
-    background:#222;
-    color:#ffffff;
+    background:var(--bg);
+    color:var(--text-strong);
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 header h1{
-    font-family: gothic medium;
+    font-family: var(--font-heading);
     font-size: 30px;
 }
 
@@ -308,12 +515,12 @@ header{
     flex-direction: column;
     align-items:center;
     padding:20px 10%;
-    background:#4f0505;
-    color:white;
+    background:var(--accent-deep);
+    color:var(--on-accent);
 }
 
 nav a{
-    color:white;
+    color:var(--on-accent);
     text-decoration:none;
     margin-left:20px;
 }
@@ -324,13 +531,13 @@ section{
 
 #date{
     font-size: 15px;
-    color: #ccc;
+    color: var(--text-muted);
     font-style: italic;
 }
 
 #location{
     font-size: 15px;
-    color: #ccc;
+    color: var(--text-muted);
     font-style: italic;
     margin-bottom: 20px;
 
@@ -347,14 +554,14 @@ section{
     margin-top: 20px;
     padding: 10px 18px;
 
-    color: white;
-    background-color: #4f0505;
+    color: var(--on-accent);
+    background-color: var(--accent-deep);
 
     text-decoration: none;
     font-size: 14px;
     font-weight: bold;
 
-    border: 2px solid #4f0505;
+    border: 2px solid var(--accent-deep);
     border-radius: 5px;
 
     transition: background-color 0.2s, color 0.2s;
@@ -362,11 +569,11 @@ section{
 
 .experience-button:hover {
     background-color: transparent;
-    color: white;
+    color: var(--btn-hover-text);
 }
 
 .experience-button:focus-visible {
-    outline: 3px solid white;
+    outline: 3px solid var(--text-strong);
     outline-offset: 4px;
 }
 
@@ -381,7 +588,7 @@ section{
 }
 
 .experience-page h2 {
-    color: #ccc;
+    color: var(--text-muted);
 }
 
 .experience-page h3 {
@@ -395,17 +602,17 @@ section{
 
 .experience-date {
     margin-top: 5px;
-    color: #ccc;
+    color: var(--text-muted);
     font-style: italic;
 }
 
 .back-link {
-    color: #ccc;
+    color: var(--text-muted);
     text-decoration: none;
 }
 
 .back-link:hover {
-    color: white;
+    color: var(--text-strong);
     text-decoration: underline;
 }
 
@@ -438,16 +645,16 @@ section{
 }
 
 .company-link {
-    color: white;
+    color: var(--text-strong);
     text-decoration: none;
     font-weight: bold;
 }
 
 .experience-item {
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-strong);
     border-radius: 5px;
-    background-color: #333;
+    background-color: var(--surface-2);
     margin-bottom: 20px;
 
     transform-style: preserve-3d;
@@ -475,7 +682,7 @@ h2{
     margin-top: 25px;
     padding-bottom: 0;
     font-size: 1.8rem;
-    color: #fff;
+    color: var(--text-strong);
 }
 
 .exp-meta {
@@ -483,7 +690,7 @@ h2{
     flex-wrap: wrap;
     gap: 1.25rem;
     margin-top: 6px;
-    color: #ccc;
+    color: var(--text-muted);
     font-style: italic;
     font-size: 0.95rem;
 }
@@ -492,7 +699,7 @@ h2{
     margin-top: 45px;
     margin-bottom: 16px;
     padding-left: 12px;
-    border-left: 4px solid var(--red);
+    border-left: 4px solid var(--accent);
     font-size: 1.4rem;
 }
 
@@ -501,12 +708,12 @@ h2{
 }
 
 .highlights strong {
-    color: var(--red);
+    color: var(--accent-text);
 }
 
 .overview {
     max-width: 800px;
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--text-85);
 }
 
 /* Project cards */
@@ -524,11 +731,11 @@ h2{
 
 .project-card {
     padding: 1.25rem;
-    background: #2e2e2e;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-top: 3px solid var(--red);
+    background: var(--surface);
+    border: 1px solid var(--line-10);
+    border-top: 3px solid var(--accent);
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 8px var(--shadow);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -544,7 +751,7 @@ h2{
 
 .project-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 8px 20px var(--shadow-hover);
 }
 
 .project-card h4 {
@@ -555,7 +762,7 @@ h2{
 .project-card p {
     margin-bottom: 0.9rem;
     font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-80);
 }
 
 /* Tag pills */
@@ -568,9 +775,9 @@ h2{
 .tags span {
     padding: 0.25rem 0.7rem;
     font-size: 0.8rem;
-    color: #fff;
-    background: rgba(230, 57, 70, 0.15);
-    border: 1px solid rgba(230, 57, 70, 0.5);
+    color: var(--text-strong);
+    background: var(--accent-tint);
+    border: 1px solid var(--accent-border);
     border-radius: 999px;
 }
 
@@ -590,10 +797,10 @@ h2{
 .gallery figure {
     margin: 0;
     padding: 0.75rem;
-    background: #2e2e2e;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--surface);
+    border: 1px solid var(--line-10);
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 8px var(--shadow);
 }
 
 .gallery img {
@@ -615,7 +822,7 @@ h2{
     margin-top: 10px;
     text-align: center;
     font-size: 0.9rem;
-    color: #aaa;
+    color: var(--text-faint);
 }
 
 /* Scrap dashboard: full-width row of 3 */
@@ -675,14 +882,8 @@ h2{
 
 footer {
     margin-top: 80px;
-    background: radial-gradient(
-        closest-corner circle at 0% 0%,
-        #ccc,
-        #ccc 20%,
-        #445 21%,
-        #223 100%
-    );
-    color: white;
+    background: var(--sky-bg);
+    color: var(--footer-text);
     text-align: center;
 }
 
@@ -709,7 +910,7 @@ footer {
 }
 
 .footer-links a {
-    color: white;
+    color: var(--footer-text);
     text-decoration: none;
     font-weight: bold;
 }
@@ -735,29 +936,29 @@ footer {
     align-items: center;
     gap: 1.25rem;
     padding: 1.25rem;
-    background: #2e2e2e;
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--surface);
+    color: var(--text-strong);
+    border: 1px solid var(--line-10);
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 8px var(--shadow);
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .cert-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    border-color: var(--line-30);
+    box-shadow: 0 8px 20px var(--shadow-hover);
 }
 
 .cert-info h4 {
     margin: 0 0 0.5rem;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.65);
+    color: var(--text-65);
     opacity: 1;
 }
 
 .cert-info p {
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--text-85);
 }
 
 .cert-badge {
@@ -782,18 +983,6 @@ footer {
 /* =========================
    SKYLINE
 ========================= */
-
-:root {
-    --building-color1: #aa80ff;
-    --building-color2: #66cc99;
-    --building-color3: #cc6699;
-    --building-color4: #538cc6;
-
-    --window-color1: #bb99ff;
-    --window-color2: #8cd9b3;
-    --window-color3: #d98cb3;
-    --window-color4: #8cb3d9;
-}
 
 .skyline {
     position: relative;
@@ -836,13 +1025,7 @@ footer {
 }
 
     .sky {
-        background: radial-gradient(
-            closest-corner circle at 15% 15%,
-            #ccc,
-            #ccc 20%,
-            #445 21%,
-            #223 100%
-        );
+        background: var(--sky-bg);
 }
 
 /* =========================
@@ -1104,3 +1287,171 @@ footer {
         );
 }
 
+
+/* =====================================================================
+   POLISH  -  nav, hero and About section
+===================================================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.01em;
+}
+
+/* ---------- Nav ---------- */
+header {
+    padding: 14px 10%;
+    gap: 6px;
+}
+
+header nav,
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+nav a {
+    margin-left: 0;
+    padding: 0.45rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    transition: background-color 0.2s ease;
+}
+
+nav a:hover,
+nav a:focus-visible {
+    background: color-mix(in srgb, var(--on-accent) 16%, transparent);
+    outline: none;
+}
+
+/* ---------- Hero ---------- */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 4rem 24px;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.6rem, 7vw, 4.75rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+}
+
+.hero-content h2 {
+    padding-bottom: 0;
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--hero-text) 70%, transparent);
+}
+
+.hero-content p {
+    max-width: 58ch;
+    font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--hero-text) 82%, transparent);
+}
+
+.hero-button {
+    margin-top: 0.75rem;
+    padding: 14px 34px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--hero-accent) 18%, transparent);
+}
+
+/* ---------- About ---------- */
+#about {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding-top: 80px;
+    padding-bottom: 60px;
+}
+
+#about h2 {
+    position: relative;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    font-weight: 700;
+}
+
+#about h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 64px;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--accent);
+}
+
+#about p {
+    max-width: 70ch;
+    margin-bottom: 1.4rem;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--text-85);
+}
+
+#about p:first-of-type {
+    font-size: 1.2rem;
+    line-height: 1.75;
+    color: var(--text-strong);
+}
+
+/* ---------- About: photo + text ---------- */
+.about-layout {
+    display: grid;
+    grid-template-columns: minmax(200px, 280px) 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.about-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 16px;
+    border: 1px solid var(--line-15);
+    box-shadow: 10px 10px 0 var(--accent), 0 10px 28px var(--shadow);
+}
+
+.about-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* stack on tablets/phones, photo on top */
+@media (max-width: 800px) {
+    .about-layout {
+        grid-template-columns: 1fr;
+        gap: 2.25rem;
+        justify-items: center;
+    }
+
+    .about-photo {
+        max-width: 240px;
+        box-shadow: 8px 8px 0 var(--accent), 0 8px 20px var(--shadow);
+    }
+}

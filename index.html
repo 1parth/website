@@ -6,9 +6,23 @@
     <title>Parth Patel | Portfolio</title>
 
     <link rel="stylesheet" href="styles.css">
+    <script src="theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
+<div class="theme-controls">
+    <select id="accent-picker" aria-label="Accent colour">
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="purple">Purple</option>
+    </select>
+    <button id="theme-toggle" type="button">☀ Light</button>
+</div>
 
 <header>
     <nav>
@@ -20,6 +34,9 @@
 </header>
 
 <section id="hero-banner">
+    <div class="hero-nebula" aria-hidden="true"></div>
+    <canvas id="starfield" aria-hidden="true"></canvas>
+    <div class="hero-moon" aria-hidden="true"></div>
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
@@ -38,17 +55,23 @@
 
 
 
+
+
 <section id="about">
-    <h2 id="aboutme">About Me</h2>
+    <h2>About Me</h2>
+    <div class="about-layout">
+        <img class="about-photo" src="images/selfie.jpeg" alt="Photo of Parth Patel">
+        <div class="about-text">
     <p>
         Hello, and welcome to my portfolio! Here, you'll find some of my most proud projects and experiences. The goal of this portfolio is to provide an in-depth overview of my skills,
         a timeline of my professional journey, and a showcase of my work.
     </p>
-<br>
     <p>
         I am a Mechatronics Engineering student with a passion for manufacturing, data analysis, automation, software development, and databases. I enjoy tackling complex problems and finding innovative solutions.
         My goal is to leverage my skills and knowledge to contribute to make positive impacts on the world through engineering and software.
     </p>
+        </div>
+    </div>
 </section>
 
 <section id="resume-timeline">
