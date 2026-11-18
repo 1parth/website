@@ -144,3 +144,43 @@ experienceItems.forEach((item) => {
     if (!reduceMotion) requestAnimationFrame(loop);
 })();
 
+(function () {
+    const track = document.getElementById("timeline-track");
+    if (!track) return;
+
+    const progress = track.querySelector(".timeline-progress");
+    const spark = track.querySelector(".timeline-spark");
+    const items = track.querySelectorAll(".timeline-item");
+    let ticking = false;
+
+    track.classList.add("js");
+
+    function update() {
+        const rect = track.getBoundingClientRect();
+        const anchor = window.innerHeight * 0.55; // how far down the screen the spark sits
+
+        // how far the spark has traveled along the line
+        const y = Math.max(0, Math.min(rect.height, anchor - rect.top));
+        progress.style.height = y + "px";
+        spark.style.top = y + "px";
+
+        // light up each milestone once the spark passes its dot
+        items.forEach(function (item) {
+            const dot = item.querySelector(".timeline-dot").getBoundingClientRect();
+            item.classList.toggle("active", dot.top < anchor);
+        });
+
+        ticking = false;
+    }
+
+    function requestUpdate() {
+        if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(update);
+        }
+    }
+
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    update();
+})();
