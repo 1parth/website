@@ -1,22 +1,19 @@
-// theme.js - include in <head> (with defer NOT set) so the theme applies before the page paints.
 (function () {
     var root = document.documentElement;
     var THEME_KEY = 'site-theme';
     var ACCENT_KEY = 'site-accent';
     var DEFAULT_THEME = 'dark';
-    var DEFAULT_ACCENT = 'purple';   // matches the :root defaults in styles.css (no attribute needed)
+    var DEFAULT_ACCENT = 'purple';   
 
     function read(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
     function write(key, value) { try { localStorage.setItem(key, value); } catch (e) {} }
 
-    // 1. Apply saved choice, otherwise use the default (dark + purple for everyone)
     var theme = read(THEME_KEY) || DEFAULT_THEME;
     root.setAttribute('data-theme', theme);
 
     var accent = read(ACCENT_KEY);
     if (accent && accent !== DEFAULT_ACCENT) root.setAttribute('data-accent', accent);
 
-    // 2. Wire up the controls once the page has loaded
     document.addEventListener('DOMContentLoaded', function () {
         var toggle = document.getElementById('theme-toggle');
         var picker = document.getElementById('accent-picker');
